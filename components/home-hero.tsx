@@ -123,11 +123,12 @@ export function HomeHero() {
   }
 
   /* 5. Пульт SCADA: operator console with faceplate readouts and alarm list */
-  if (layout === "hmi") {
+  if (layout === "hmi" || layout === "hmiLight") {
+    const light = layout === "hmiLight"
     const tags = ["TI-101", "FI-102", "PI-103", "LI-104"]
     return (
-      <section className="border-b border-border bg-primary">
-        <div className="border-b border-border bg-black/30">
+      <section className={`border-b border-border ${light ? "bg-secondary" : "bg-primary"}`}>
+        <div className={`border-b border-border ${light ? "bg-foreground/[0.06]" : "bg-black/30"}`}>
           <Container className="flex h-9 items-center justify-between font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             <span>DANEKER · HMI · Atyrau</span>
             <span className="flex items-center gap-2 text-brand">

@@ -11,6 +11,7 @@ const SCHEME_SWATCHES: Record<Scheme, { bg: string; brand: string; ring: string 
   amber: { bg: "#1a1a1a", brand: "#f5a623", ring: "#0d0d0d" },
   signal: { bg: "#f2f1ee", brand: "#e8a317", ring: "#1a1a1a" },
   hmi: { bg: "#1c242c", brand: "#3fd18a", ring: "#0f151a" },
+  hmiLight: { bg: "#e4e7ea", brand: "#1f8a5b", ring: "#5b6670" },
   swiss: { bg: "#ffffff", brand: "#e30613", ring: "#111111" },
 }
 

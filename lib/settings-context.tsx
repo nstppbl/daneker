@@ -4,11 +4,11 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 import { type Lang, dictionaries, type Dict } from "@/lib/i18n"
 import { extraDictionaries, type ExtraDict } from "@/lib/i18n-extra"
 
-export type Scheme = "petrol" | "slate" | "graphite" | "steel" | "amber" | "signal" | "hmi" | "swiss"
-export type Layout = "editorial" | "technical" | "industrial" | "industrialLight" | "hmi" | "swiss" | "bento" | "pid" | "corporate"
+export type Scheme = "petrol" | "slate" | "graphite" | "steel" | "amber" | "signal" | "hmi" | "hmiLight" | "swiss"
+export type Layout = "editorial" | "technical" | "industrial" | "industrialLight" | "hmi" | "hmiLight" | "swiss" | "bento" | "pid" | "corporate"
 
-export const LAYOUTS: Layout[] = ["editorial", "technical", "industrial", "industrialLight", "hmi", "swiss", "bento", "pid", "corporate"]
-export const SCHEMES: Scheme[] = ["petrol", "slate", "graphite", "steel", "amber", "signal", "hmi", "swiss"]
+export const LAYOUTS: Layout[] = ["editorial", "technical", "industrial", "industrialLight", "hmi", "hmiLight", "swiss", "bento", "pid", "corporate"]
+export const SCHEMES: Scheme[] = ["petrol", "slate", "graphite", "steel", "amber", "signal", "hmi", "hmiLight", "swiss"]
 export const DARK_SCHEMES: Scheme[] = ["graphite", "amber", "hmi"]
 
 /** Each concept opens with the palette it was designed for; the visitor can still change it. */
@@ -18,6 +18,7 @@ export const LAYOUT_SCHEME: Record<Layout, Scheme> = {
   industrial: "amber",
   industrialLight: "signal",
   hmi: "hmi",
+  hmiLight: "hmiLight",
   swiss: "swiss",
   bento: "petrol",
   pid: "slate",

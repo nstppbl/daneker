@@ -224,6 +224,32 @@
   --radius: 0.25rem;
 }
 
+/* Scheme 7b: hmiLight — ISA-101 high-performance HMI: grey, colour only for status */
+[data-scheme='hmiLight'] {
+  color-scheme: light;
+  --background: oklch(0.92 0.004 240);
+  --foreground: oklch(0.25 0.012 245);
+  --card: oklch(0.965 0.003 240);
+  --card-foreground: oklch(0.25 0.012 245);
+  --popover: oklch(0.975 0.003 240);
+  --popover-foreground: oklch(0.25 0.012 245);
+  --primary: oklch(0.3 0.015 245);
+  --primary-foreground: oklch(0.96 0.003 240);
+  --secondary: oklch(0.88 0.006 240);
+  --secondary-foreground: oklch(0.25 0.012 245);
+  --muted: oklch(0.88 0.006 240);
+  --muted-foreground: oklch(0.47 0.015 245);
+  --accent: oklch(0.55 0.13 155);
+  --accent-foreground: oklch(0.98 0.003 240);
+  --destructive: oklch(0.58 0.21 27);
+  --border: oklch(0.8 0.008 240);
+  --input: oklch(0.8 0.008 240);
+  --ring: oklch(0.55 0.13 155);
+  --brand: oklch(0.55 0.13 155);
+  --brand-foreground: oklch(0.98 0.003 240);
+  --radius: 0.25rem;
+}
+
 /* Scheme 8: swiss — white, black, signal red */
 [data-scheme='swiss'] {
   color-scheme: light;
@@ -266,7 +292,8 @@
   --radius: 0;
   --section-y: 5.5rem;
 }
-[data-layout='hmi'] {
+[data-layout='hmi'],
+[data-layout='hmiLight'] {
   --radius: 0.25rem;
   --section-y: 4.5rem;
 }
@@ -391,24 +418,30 @@
 }
 
 /* --- Пульт SCADA: operator console --- */
-[data-layout='hmi'] body {
+[data-layout='hmi'] body,
+[data-layout='hmiLight'] body {
   font-family: var(--font-plex), var(--font-inter), sans-serif;
 }
 [data-layout='hmi'] h1,
+[data-layout='hmiLight'] h1,
 [data-layout='hmi'] h2,
-[data-layout='hmi'] h3 {
+[data-layout='hmiLight'] h2,
+[data-layout='hmi'] h3,
+[data-layout='hmiLight'] h3 {
   font-family: var(--font-plex-mono), monospace;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
-[data-layout='hmi'] .surface {
+[data-layout='hmi'] .surface,
+[data-layout='hmiLight'] .surface {
   background: linear-gradient(180deg, color-mix(in oklch, var(--card) 100%, white 3%), var(--card));
   box-shadow: inset 0 1px 0 color-mix(in oklch, white 6%, transparent), 0 0 0 1px var(--border);
   border-color: transparent;
   position: relative;
   padding-top: 2.25rem;
 }
-[data-layout='hmi'] .surface::before {
+[data-layout='hmi'] .surface::before,
+[data-layout='hmiLight'] .surface::before {
   content: '';
   position: absolute;
   top: 0.9rem;
@@ -419,7 +452,8 @@
   background: var(--brand);
   box-shadow: 0 0 10px var(--brand);
 }
-[data-layout='hmi'] .label-mono::before {
+[data-layout='hmi'] .label-mono::before,
+[data-layout='hmiLight'] .label-mono::before {
   content: '● ';
   color: var(--brand);
 }

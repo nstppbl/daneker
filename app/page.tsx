@@ -16,7 +16,7 @@ export default function HomePage() {
       <HomeHero />
 
       {/* STATS (the console and bento heroes already show them) */}
-      {layout !== "hmi" && layout !== "bento" && (
+      {layout !== "hmi" && layout !== "hmiLight" && layout !== "bento" && (
       <section className="border-b border-border bg-card">
         <Container>
           <dl className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
