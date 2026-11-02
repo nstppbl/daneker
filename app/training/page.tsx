@@ -4,6 +4,7 @@ import { useSettings } from "@/lib/settings-context"
 import { Container, SectionHeading } from "@/components/ui/section"
 import { PageHero } from "@/components/page-hero"
 import { ContactCta } from "@/components/contact-cta"
+import { CosinusBlock } from "@/components/content-sections"
 
 export default function TrainingPage() {
   const { t } = useSettings()
@@ -12,6 +13,8 @@ export default function TrainingPage() {
   return (
     <>
       <PageHero eyebrow={tr.eyebrow} title={tr.title} intro={tr.intro} />
+
+      <CosinusBlock />
 
       {/* PROGRAMS */}
       <section className="section-pad">

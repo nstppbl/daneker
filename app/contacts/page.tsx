@@ -5,6 +5,20 @@ import { Container } from "@/components/ui/section"
 import { PageHero } from "@/components/page-hero"
 import { ContactForm } from "@/components/contact-form"
 
+function linkify(text: string) {
+  const m = text.match(/[\w.+-]+@[\w-]+\.[\w.]+/)
+  if (!m || m.index === undefined) return text
+  return (
+    <>
+      {text.slice(0, m.index)}
+      <a href={`mailto:${m[0]}`} className="font-medium text-foreground underline-offset-4 hover:text-brand hover:underline">
+        {m[0]}
+      </a>
+      {text.slice(m.index + m[0].length)}
+    </>
+  )
+}
+
 export default function ContactsPage() {
   const { t } = useSettings()
   const c = t.contacts
@@ -24,7 +38,7 @@ export default function ContactsPage() {
                   {c.contactBlock.items.map((it, i) => (
                     <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
                       <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
-                      {it}
+                      <span>{linkify(it)}</span>
                     </li>
                   ))}
                 </ul>
@@ -46,7 +60,7 @@ export default function ContactsPage() {
             </div>
 
             {/* Form column */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
+            <div id="request" className="scroll-mt-24 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
               <h2 className="text-xl font-bold tracking-tight text-foreground">{t.form.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.common.region}</p>
               <div className="mt-6">

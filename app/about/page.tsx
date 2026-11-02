@@ -4,6 +4,7 @@ import { useSettings } from "@/lib/settings-context"
 import { Container, SectionHeading } from "@/components/ui/section"
 import { PageHero } from "@/components/page-hero"
 import { ContactCta } from "@/components/contact-cta"
+import { PathSection, ProjectsSection, CertsSection } from "@/components/content-sections"
 
 function ListCard({ title, items, note }: { title: string; items: string[]; note?: string }) {
   return (
@@ -32,8 +33,12 @@ export default function AboutPage() {
     <>
       <PageHero eyebrow={a.eyebrow} title={a.title} intro={a.intro} />
 
+      <PathSection />
+      <ProjectsSection />
+      <CertsSection />
+
       {/* EXPERIENCE + STANDARDS */}
-      <section className="section-pad">
+      <section className="section-pad border-t border-border">
         <Container>
           <div className="grid gap-6 md:grid-cols-2">
             <ListCard title={a.experience.title} items={a.experience.items} note={a.experience.note} />

@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react"
 import { type Lang, dictionaries, type Dict } from "@/lib/i18n"
+import { extraDictionaries, type ExtraDict } from "@/lib/i18n-extra"
 
 export type Scheme = "petrol" | "slate" | "graphite" | "steel"
 export type Layout = "editorial" | "technical" | "minimal"
@@ -11,6 +12,7 @@ type SettingsState = {
   scheme: Scheme
   layout: Layout
   t: Dict
+  x: ExtraDict
   setLang: (l: Lang) => void
   setScheme: (s: Scheme) => void
   setLayout: (l: Layout) => void
@@ -64,7 +66,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <SettingsContext.Provider
-      value={{ lang, scheme, layout, t: dictionaries[lang], setLang, setScheme, setLayout }}
+      value={{ lang, scheme, layout, t: dictionaries[lang], x: extraDictionaries[lang], setLang, setScheme, setLayout }}
     >
       {children}
     </SettingsContext.Provider>

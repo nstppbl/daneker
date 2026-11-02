@@ -4,6 +4,7 @@ import { useSettings } from "@/lib/settings-context"
 import { Container } from "@/components/ui/section"
 import { PageHero } from "@/components/page-hero"
 import { ContactCta } from "@/components/contact-cta"
+import { CaseSection, ScopeSection } from "@/components/content-sections"
 
 export default function ServicesPage() {
   const { t } = useSettings()
@@ -55,6 +56,8 @@ export default function ServicesPage() {
         </section>
       ))}
 
+      <CaseSection />
+      <ScopeSection />
       <ContactCta />
     </>
   )

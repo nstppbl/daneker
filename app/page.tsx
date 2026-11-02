@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useSettings } from "@/lib/settings-context"
 import { Container, SectionHeading } from "@/components/ui/section"
 import { ContactCta } from "@/components/contact-cta"
+import { DiffSection, CertsSection, SurveySection } from "@/components/content-sections"
 
 export default function HomePage() {
   const { t } = useSettings()
@@ -97,6 +98,9 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <DiffSection />
+      <CertsSection compact />
+
       {/* TRAINING */}
       <section className="section-pad">
         <Container>
@@ -125,23 +129,24 @@ export default function HomePage() {
       </section>
 
       {/* PROCESS */}
-      <section className="section-pad border-t border-border bg-primary text-primary-foreground">
+      <section className="section-pad border-t border-border bg-secondary/30">
         <Container>
           <p className="label-mono text-brand">{h.processKicker}</p>
-          <h2 className="mt-3 max-w-3xl text-balance text-3xl font-bold tracking-tight sm:text-4xl">{h.processTitle}</h2>
+          <h2 className="mt-3 max-w-3xl text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{h.processTitle}</h2>
           <ol className="mt-12 grid gap-8 md:grid-cols-4">
             {h.steps.map((s) => (
-              <li key={s.n} className="border-t border-primary-foreground/20 pt-5">
+              <li key={s.n} className="border-t border-border pt-5">
                 <p className="font-mono text-sm text-brand">{s.n}</p>
-                <h3 className="mt-3 text-lg font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{s.body}</p>
-                <p className="mt-4 text-xs font-medium uppercase tracking-wide text-primary-foreground/50">{s.meta}</p>
+                <h3 className="mt-3 text-lg font-semibold text-foreground">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground/70">{s.meta}</p>
               </li>
             ))}
           </ol>
         </Container>
       </section>
 
+      <SurveySection />
       <ContactCta />
     </>
   )
