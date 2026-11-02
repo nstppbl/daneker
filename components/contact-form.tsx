@@ -3,15 +3,41 @@
 import { useState } from "react"
 import { useSettings } from "@/lib/settings-context"
 
+export const LEAD_EMAIL = "info@daneker.kz"
+
 export function ContactForm() {
   const { t } = useSettings()
-  const [status, setStatus] = useState<"idle" | "sending" | "done">("idle")
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle")
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    const form = e.currentTarget
+    const data = new FormData(form)
+    // Honeypot: bots fill hidden fields, people don't.
+    if (data.get("_honey")) return
     setStatus("sending")
-    // UI-only: simulate a network request, no real delivery yet.
-    setTimeout(() => setStatus("done"), 900)
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${LEAD_EMAIL}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `Заявка с сайта daneker.kz: ${data.get("name") || ""}`,
+          _template: "table",
+          _captcha: "false",
+          "Имя": data.get("name"),
+          "Предприятие": data.get("org"),
+          "Телефон или почта": data.get("contact"),
+          "Сообщение": data.get("message"),
+          "Страница": window.location.href,
+        }),
+      })
+      const json = (await res.json().catch(() => ({}))) as { success?: string | boolean }
+      if (!res.ok || String(json.success) === "false") throw new Error("send failed")
+      form.reset()
+      setStatus("done")
+    } catch {
+      setStatus("error")
+    }
   }
 
   const fieldClass =
@@ -19,6 +45,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <label htmlFor="cf-name" className="text-sm font-medium text-foreground">
@@ -54,6 +81,14 @@ export function ContactForm() {
         >
           {status === "sending" ? t.form.sending : t.form.submit}
         </button>
+        {status === "error" && (
+          <p role="alert" className="text-sm font-medium text-destructive">
+            {t.form.error}{" "}
+            <a href={`mailto:${LEAD_EMAIL}`} className="underline">
+              {LEAD_EMAIL}
+            </a>
+          </p>
+        )}
         {status === "done" && (
           <p role="status" className="text-sm font-medium text-brand">
             {t.form.success}

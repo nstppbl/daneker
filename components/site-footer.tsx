@@ -39,6 +39,11 @@ export function SiteFooter() {
                 info@daneker.kz
               </a>
             </li>
+            <li>
+              <a href="mailto:sales@daneker.kz" className="transition-colors hover:text-brand">
+                sales@daneker.kz
+              </a>
+            </li>
             <li>Атырау, Казахстан</li>
             <li>Пн–Пт, 9:00–18:00</li>
           </ul>

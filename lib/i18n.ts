@@ -99,6 +99,7 @@ export type Dict = {
     submit: string
     sending: string
     success: string
+    error: string
   }
   footer: {
     desc: string
@@ -335,7 +336,7 @@ const ru: Dict = {
     intro: "Опишите задачу в свободной форме. Если есть схема, перечень оборудования или фотографии узла, приложите: разговор будет короче и точнее.",
     contactBlock: {
       title: "Связь",
-      items: ["Телефон и WhatsApp: +7 (___) ___ __ __", "Почта: info@daneker.kz", "Отдел работы с заказчиками: sales@daneker.kz", "Адрес: Атырау", "Часы работы: понедельник–пятница, 9:00–18:00"],
+      items: ["Почта: info@daneker.kz", "Отдел работы с заказчиками: sales@daneker.kz", "Адрес: Атырау", "Часы работы: понедельник–пятница, 9:00–18:00"],
     },
     requisitesBlock: {
       title: "Реквизиты",
@@ -353,6 +354,7 @@ const ru: Dict = {
     submit: "Отправить",
     sending: "Отправляем…",
     success: "Спасибо! Мы ответим в течение рабочих суток.",
+    error: "Не получилось отправить. Напишите нам на почту:",
   },
   footer: {
     desc: "Инжиниринг и сервис систем автоматизации. Атырау и Атырауская область.",
@@ -573,7 +575,7 @@ const kz: Dict = {
     intro: "Тапсырманы бар күйінде сипаттаңыз. Схема, жабдық тізімі немесе тораптың фотосуреттері болса, қоса беріңіз: әңгіме қысқа әрі нақты болады.",
     contactBlock: {
       title: "Байланыс",
-      items: ["Телефон және WhatsApp: +7 (___) ___ __ __", "Пошта: info@daneker.kz", "Тапсырыс берушілермен жұмыс бөлімі: sales@daneker.kz", "Мекенжай: Атырау", "Жұмыс уақыты: дүйсенбі–жұма, 9:00–18:00"],
+      items: ["Пошта: info@daneker.kz", "Тапсырыс берушілермен жұмыс бөлімі: sales@daneker.kz", "Мекенжай: Атырау", "Жұмыс уақыты: дүйсенбі–жұма, 9:00–18:00"],
     },
     requisitesBlock: {
       title: "Деректемелер",
@@ -591,6 +593,7 @@ const kz: Dict = {
     submit: "Жіберу",
     sending: "Жіберілуде…",
     success: "Рахмет! Бір жұмыс тәулігінде жауап береміз.",
+    error: "Жіберу мүмкін болмады. Бізге поштаға жазыңыз:",
   },
   footer: {
     desc: "Автоматтандыру жүйелерінің инжинирингі және сервисі. Атырау және Атырау облысы.",
@@ -811,7 +814,7 @@ const en: Dict = {
     intro: "Describe the task in free form. If you have a drawing, an equipment list or photos of the assembly, attach them: the conversation will be shorter and more precise.",
     contactBlock: {
       title: "Contact",
-      items: ["Phone and WhatsApp: +7 (___) ___ __ __", "Email: info@daneker.kz", "Customer relations: sales@daneker.kz", "Address: Atyrau", "Hours: Monday–Friday, 9:00–18:00"],
+      items: ["Email: info@daneker.kz", "Customer relations: sales@daneker.kz", "Address: Atyrau", "Hours: Monday–Friday, 9:00–18:00"],
     },
     requisitesBlock: {
       title: "Company details",
@@ -829,6 +832,7 @@ const en: Dict = {
     submit: "Send",
     sending: "Sending…",
     success: "Thank you! We'll reply within one working day.",
+    error: "Couldn't send. Please email us at:",
   },
   footer: {
     desc: "Engineering and service of automation systems. Atyrau and Atyrau region.",
