@@ -16,10 +16,23 @@ const archivo = Archivo({
 const jbMono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono-jb", display: "swap" })
 
 export const metadata: Metadata = {
-  title: "DANEKER — Functional Safety & Automation Integrity",
+  metadataBase: new URL("https://www.daneker.kz"),
+  title: {
+    default: "DANEKER — КИПиА и АСУ ТП в Атырау",
+    template: "%s | DANEKER",
+  },
   description:
     "КИПиА и АСУ ТП в Атырау: обслуживание, монтаж и пусконаладка, траблшутинг, расчёты, документация и обучение персонала. IEC 61511, IEC 61508, ISA.",
-  generator: "v0.app",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "ru_KZ",
+    siteName: "DANEKER",
+    title: "DANEKER — КИПиА и АСУ ТП в Атырау",
+    description:
+      "Обслуживание, монтаж и пусконаладка, траблшутинг, расчёты, документация и обучение персонала КИПиА и АСУ ТП.",
+    images: [{ url: "/hero-industrial.png", width: 1024, height: 1024, alt: "DANEKER" }],
+  },
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
