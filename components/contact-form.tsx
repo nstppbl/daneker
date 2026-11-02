@@ -7,7 +7,7 @@ export const LEAD_EMAIL = "info@daneker.kz"
 
 export function ContactForm() {
   const { t } = useSettings()
-  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle")
+  const [status, setStatus] = useState<"idle" | "sending" | "done" | "error" | "activate">("idle")
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -31,8 +31,16 @@ export function ContactForm() {
           "Страница": window.location.href,
         }),
       })
-      const json = (await res.json().catch(() => ({}))) as { success?: string | boolean }
-      if (!res.ok || String(json.success) === "false") throw new Error("send failed")
+      const json = (await res.json().catch(() => ({}))) as { success?: string | boolean; message?: string }
+      if (/activat/i.test(json.message ?? "")) {
+        // First submission ever: FormSubmit emails an activation link to LEAD_EMAIL.
+        setStatus("activate")
+        return
+      }
+      if (!res.ok || String(json.success) === "false") {
+        console.error("Form send failed:", res.status, json)
+        throw new Error("send failed")
+      }
       form.reset()
       setStatus("done")
     } catch {
@@ -81,6 +89,11 @@ export function ContactForm() {
         >
           {status === "sending" ? t.form.sending : t.form.submit}
         </button>
+        {status === "activate" && (
+          <p role="status" className="text-sm font-medium text-brand">
+            Форма ждёт активации: откройте письмо от FormSubmit на {LEAD_EMAIL} и нажмите Activate Form.
+          </p>
+        )}
         {status === "error" && (
           <p role="alert" className="text-sm font-medium text-destructive">
             {t.form.error}{" "}
