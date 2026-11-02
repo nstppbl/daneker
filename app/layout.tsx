@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
-import { Inter, Archivo, JetBrains_Mono } from "next/font/google"
+import { Inter, Archivo, JetBrains_Mono, Unbounded, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google"
 import { SettingsProvider } from "@/lib/settings-context"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -13,6 +13,9 @@ const archivo = Archivo({
   variable: "--font-archivo",
   display: "swap",
 })
+const unbounded = Unbounded({ subsets: ["latin", "cyrillic"], weight: ["400", "500", "600"], variable: "--font-unbounded", display: "swap" })
+const plex = IBM_Plex_Sans({ subsets: ["latin", "cyrillic"], weight: ["400", "500", "600", "700"], variable: "--font-plex", display: "swap" })
+const plexMono = IBM_Plex_Mono({ subsets: ["latin", "cyrillic"], weight: ["400", "500", "600"], variable: "--font-plex-mono", display: "swap" })
 const jbMono = JetBrains_Mono({ subsets: ["latin", "cyrillic"], weight: ["400", "500"], variable: "--font-mono-jb", display: "swap" })
 
 export const metadata: Metadata = {
@@ -54,7 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" data-scheme="petrol" data-layout="editorial" className="bg-background">
-      <body className={`${inter.variable} ${archivo.variable} ${jbMono.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${archivo.variable} ${jbMono.variable} ${unbounded.variable} ${plex.variable} ${plexMono.variable} font-sans antialiased`}>
         <SettingsProvider>
           <SiteHeader />
           <main>{children}</main>

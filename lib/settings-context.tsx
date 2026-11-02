@@ -4,8 +4,25 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 import { type Lang, dictionaries, type Dict } from "@/lib/i18n"
 import { extraDictionaries, type ExtraDict } from "@/lib/i18n-extra"
 
-export type Scheme = "petrol" | "slate" | "graphite" | "steel" | "amber"
-export type Layout = "editorial" | "technical" | "minimal" | "industrial"
+export type Scheme = "petrol" | "slate" | "graphite" | "steel" | "amber" | "signal" | "hmi" | "swiss"
+export type Layout = "editorial" | "technical" | "industrial" | "industrialLight" | "hmi" | "swiss" | "bento" | "pid" | "corporate"
+
+export const LAYOUTS: Layout[] = ["editorial", "technical", "industrial", "industrialLight", "hmi", "swiss", "bento", "pid", "corporate"]
+export const SCHEMES: Scheme[] = ["petrol", "slate", "graphite", "steel", "amber", "signal", "hmi", "swiss"]
+export const DARK_SCHEMES: Scheme[] = ["graphite", "amber", "hmi"]
+
+/** Each concept opens with the palette it was designed for; the visitor can still change it. */
+export const LAYOUT_SCHEME: Record<Layout, Scheme> = {
+  editorial: "petrol",
+  technical: "steel",
+  industrial: "amber",
+  industrialLight: "signal",
+  hmi: "hmi",
+  swiss: "swiss",
+  bento: "petrol",
+  pid: "slate",
+  corporate: "steel",
+}
 
 type SettingsState = {
   lang: Lang
@@ -38,8 +55,8 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
       if (raw) {
         const p = JSON.parse(raw) as Partial<Persisted>
         if (p.lang) setLangState(p.lang)
-        if (p.scheme) setSchemeState(p.scheme)
-        if (p.layout) setLayoutState(p.layout)
+        if (p.scheme && SCHEMES.includes(p.scheme)) setSchemeState(p.scheme)
+        if (p.layout && LAYOUTS.includes(p.layout)) setLayoutState(p.layout)
       }
     } catch {
       /* ignore */
@@ -52,7 +69,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     el.setAttribute("data-scheme", scheme)
     el.setAttribute("data-layout", layout)
     el.setAttribute("lang", lang)
-    el.classList.toggle("dark", scheme === "graphite" || scheme === "amber")
+    el.classList.toggle("dark", DARK_SCHEMES.includes(scheme))
     try {
       localStorage.setItem(LS_KEY, JSON.stringify({ lang, scheme, layout }))
     } catch {
@@ -62,7 +79,10 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = useCallback((l: Lang) => setLangState(l), [])
   const setScheme = useCallback((s: Scheme) => setSchemeState(s), [])
-  const setLayout = useCallback((l: Layout) => setLayoutState(l), [])
+  const setLayout = useCallback((l: Layout) => {
+    setLayoutState(l)
+    setSchemeState(LAYOUT_SCHEME[l])
+  }, [])
 
   return (
     <SettingsContext.Provider

@@ -8,14 +8,15 @@ import { HomeHero } from "@/components/home-hero"
 import { DiffSection, CertsSection, SurveySection } from "@/components/content-sections"
 
 export default function HomePage() {
-  const { t } = useSettings()
+  const { t, layout } = useSettings()
   const h = t.home
 
   return (
     <>
       <HomeHero />
 
-      {/* STATS */}
+      {/* STATS (the console and bento heroes already show them) */}
+      {layout !== "hmi" && layout !== "bento" && (
       <section className="border-b border-border bg-card">
         <Container>
           <dl className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
@@ -28,6 +29,7 @@ export default function HomePage() {
           </dl>
         </Container>
       </section>
+      )}
 
       {/* PROBLEMS */}
       <section className="section-pad">

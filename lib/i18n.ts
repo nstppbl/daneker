@@ -113,8 +113,8 @@ export type Dict = {
     language: string
     layout: string
     scheme: string
-    layouts: { editorial: string; technical: string; minimal: string; industrial: string }
-    schemes: { petrol: string; slate: string; graphite: string; steel: string; amber: string }
+    layouts: Record<"editorial" | "technical" | "industrial" | "industrialLight" | "hmi" | "swiss" | "bento" | "pid" | "corporate", string>
+    schemes: Record<"petrol" | "slate" | "graphite" | "steel" | "amber" | "signal" | "hmi" | "swiss", string>
   }
 }
 
@@ -368,8 +368,8 @@ const ru: Dict = {
     language: "Язык",
     layout: "Макет",
     scheme: "Цветовая схема",
-    layouts: { editorial: "Редакционный", technical: "Чертёж", minimal: "Минимальный", industrial: "Индустриальный" },
-    schemes: { petrol: "Петроль", slate: "Сланец", graphite: "Графит", steel: "Сталь", amber: "Сигнальный" },
+    layouts: { editorial: "Редакционный", technical: "Чертёж", industrial: "Индустр. тёмный", industrialLight: "Индустр. светлый", hmi: "Пульт SCADA", swiss: "Типографика", bento: "Плитки", pid: "Схема P&ID", corporate: "Корпоративный" },
+    schemes: { petrol: "Петроль", slate: "Сланец", graphite: "Графит", steel: "Сталь", amber: "Сигнальный", signal: "Бетон", hmi: "Пульт", swiss: "Красный" },
   },
 }
 
@@ -607,8 +607,8 @@ const kz: Dict = {
     language: "Тіл",
     layout: "Макет",
     scheme: "Түс схемасы",
-    layouts: { editorial: "Редакциялық", technical: "Сызба", minimal: "Минималды", industrial: "Индустриялық" },
-    schemes: { petrol: "Петроль", slate: "Тақтатас", graphite: "Графит", steel: "Болат", amber: "Сигналдық" },
+    layouts: { editorial: "Редакциялық", technical: "Сызба", industrial: "Индустр. қараңғы", industrialLight: "Индустр. ашық", hmi: "SCADA пульті", swiss: "Типографика", bento: "Тақташалар", pid: "P&ID сызбасы", corporate: "Корпоративтік" },
+    schemes: { petrol: "Петроль", slate: "Тақтатас", graphite: "Графит", steel: "Болат", amber: "Сигналдық", signal: "Бетон", hmi: "Пульт", swiss: "Қызыл" },
   },
 }
 
@@ -846,8 +846,8 @@ const en: Dict = {
     language: "Language",
     layout: "Layout",
     scheme: "Color scheme",
-    layouts: { editorial: "Editorial", technical: "Blueprint", minimal: "Minimal", industrial: "Industrial" },
-    schemes: { petrol: "Petrol", slate: "Slate", graphite: "Graphite", steel: "Steel", amber: "Signal" },
+    layouts: { editorial: "Editorial", technical: "Blueprint", industrial: "Industrial dark", industrialLight: "Industrial light", hmi: "SCADA console", swiss: "Typographic", bento: "Bento", pid: "P&ID schematic", corporate: "Corporate" },
+    schemes: { petrol: "Petrol", slate: "Slate", graphite: "Graphite", steel: "Steel", amber: "Signal", signal: "Concrete", hmi: "Console", swiss: "Red" },
   },
 }
 

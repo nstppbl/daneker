@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useSettings } from "@/lib/settings-context"
+import { useSettings, DARK_SCHEMES } from "@/lib/settings-context"
 
 /**
  * Renders the correct DANEKER logo variant for the current color scheme.
@@ -18,7 +18,7 @@ export function BrandLogo({
   priority?: boolean
 }) {
   const { scheme } = useSettings()
-  const dark = scheme === "graphite" || scheme === "amber"
+  const dark = DARK_SCHEMES.includes(scheme)
 
   const src =
     variant === "icon"

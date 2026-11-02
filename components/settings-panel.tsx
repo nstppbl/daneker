@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useSettings, type Scheme, type Layout } from "@/lib/settings-context"
+import { useSettings, type Scheme, LAYOUTS, SCHEMES, DARK_SCHEMES } from "@/lib/settings-context"
 
 const SCHEME_SWATCHES: Record<Scheme, { bg: string; brand: string; ring: string }> = {
   petrol: { bg: "#f7faf9", brand: "#0d7a7a", ring: "#1e3a3a" },
@@ -9,14 +9,17 @@ const SCHEME_SWATCHES: Record<Scheme, { bg: string; brand: string; ring: string 
   graphite: { bg: "#1c2624", brand: "#2fb8b8", ring: "#0f1513" },
   steel: { bg: "#f6f8fb", brand: "#2f6bd6", ring: "#243a63" },
   amber: { bg: "#1a1a1a", brand: "#f5a623", ring: "#0d0d0d" },
+  signal: { bg: "#f2f1ee", brand: "#e8a317", ring: "#1a1a1a" },
+  hmi: { bg: "#1c242c", brand: "#3fd18a", ring: "#0f151a" },
+  swiss: { bg: "#ffffff", brand: "#e30613", ring: "#111111" },
 }
 
 export function SettingsPanel() {
   const { t, scheme, layout, setScheme, setLayout } = useSettings()
   const [open, setOpen] = useState(false)
 
-  const schemes: Scheme[] = ["petrol", "slate", "graphite", "steel", "amber"]
-  const layouts: Layout[] = ["editorial", "technical", "minimal", "industrial"]
+  const schemes = SCHEMES
+  const layouts = LAYOUTS
 
   return (
     <>
@@ -36,7 +39,7 @@ export function SettingsPanel() {
       {open && (
         <>
           <div className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-[1px]" onClick={() => setOpen(false)} />
-          <div className="fixed right-4 top-[68px] z-50 w-[min(92vw,320px)] rounded-xl border border-border bg-popover p-5 shadow-xl">
+          <div className="fixed right-4 top-[68px] z-50 max-h-[calc(100vh-88px)] w-[min(92vw,340px)] overflow-y-auto rounded-xl border border-border bg-popover p-5 shadow-xl">
             <p className="label-mono mb-4 text-muted-foreground">{t.settings.title}</p>
 
             {/* Layout */}
