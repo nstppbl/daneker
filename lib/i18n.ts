@@ -358,7 +358,7 @@ const ru: Dict = {
     desc: "Инжиниринг и сервис систем автоматизации. Атырау и Атырауская область.",
     sections: "Разделы",
     connect: "Связь",
-    copyright: "© 2026 DANEKER",
+    copyright: "© 2026 DANEKER. Все права защищены.",
     note: "Реквизиты будут добавлены после регистрации",
   },
   settings: {
@@ -596,7 +596,7 @@ const kz: Dict = {
     desc: "Автоматтандыру жүйелерінің инжинирингі және сервисі. Атырау және Атырау облысы.",
     sections: "Бөлімдер",
     connect: "Байланыс",
-    copyright: "© 2026 DANEKER",
+    copyright: "© 2026 DANEKER. Барлық құқықтар қорғалған.",
     note: "Деректемелер тіркеуден кейін қосылады",
   },
   settings: {
@@ -834,7 +834,7 @@ const en: Dict = {
     desc: "Engineering and service of automation systems. Atyrau and Atyrau region.",
     sections: "Sections",
     connect: "Contact",
-    copyright: "© 2026 DANEKER",
+    copyright: "© 2026 DANEKER. All rights reserved.",
     note: "Company details will be added after registration",
   },
   settings: {
