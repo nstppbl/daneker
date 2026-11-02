@@ -1,0 +1,591 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-archivo), var(--font-inter), sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+/* ============================================================
+   COLOR SCHEMES  (switchable via data-scheme on <html>)
+   Scheme 1: petrol  (brand default, light)
+   ============================================================ */
+:root,
+[data-scheme='petrol'] {
+  color-scheme: light;
+  --background: oklch(0.985 0.004 190);
+  --foreground: oklch(0.24 0.018 195);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.018 195);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.018 195);
+  --primary: oklch(0.31 0.03 187);
+  --primary-foreground: oklch(0.98 0.004 190);
+  --secondary: oklch(0.95 0.008 190);
+  --secondary-foreground: oklch(0.31 0.03 187);
+  --muted: oklch(0.955 0.006 190);
+  --muted-foreground: oklch(0.5 0.015 195);
+  --accent: oklch(0.53 0.09 192);
+  --accent-foreground: oklch(0.99 0.004 190);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.9 0.008 190);
+  --input: oklch(0.9 0.008 190);
+  --ring: oklch(0.53 0.09 192);
+  --brand: oklch(0.53 0.09 192);
+  --brand-foreground: oklch(0.99 0.004 190);
+  --radius: 0.5rem;
+}
+
+/* Scheme 2: slate — cool neutral industrial */
+[data-scheme='slate'] {
+  color-scheme: light;
+  --background: oklch(0.97 0.004 240);
+  --foreground: oklch(0.24 0.02 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.02 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.02 250);
+  --primary: oklch(0.32 0.025 250);
+  --primary-foreground: oklch(0.98 0.004 240);
+  --secondary: oklch(0.94 0.006 240);
+  --secondary-foreground: oklch(0.3 0.025 250);
+  --muted: oklch(0.945 0.005 240);
+  --muted-foreground: oklch(0.5 0.02 250);
+  --accent: oklch(0.55 0.1 200);
+  --accent-foreground: oklch(0.99 0.004 240);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.89 0.008 240);
+  --input: oklch(0.89 0.008 240);
+  --ring: oklch(0.55 0.1 200);
+  --brand: oklch(0.55 0.1 200);
+  --brand-foreground: oklch(0.99 0.004 240);
+  --radius: 0.5rem;
+}
+
+/* Scheme 3: graphite — dark technical */
+[data-scheme='graphite'] {
+  color-scheme: dark;
+  --background: oklch(0.19 0.012 195);
+  --foreground: oklch(0.95 0.005 190);
+  --card: oklch(0.23 0.015 195);
+  --card-foreground: oklch(0.95 0.005 190);
+  --popover: oklch(0.23 0.015 195);
+  --popover-foreground: oklch(0.95 0.005 190);
+  --primary: oklch(0.62 0.11 192);
+  --primary-foreground: oklch(0.15 0.01 195);
+  --secondary: oklch(0.27 0.017 195);
+  --secondary-foreground: oklch(0.95 0.005 190);
+  --muted: oklch(0.26 0.015 195);
+  --muted-foreground: oklch(0.7 0.02 192);
+  --accent: oklch(0.66 0.12 192);
+  --accent-foreground: oklch(0.15 0.01 195);
+  --destructive: oklch(0.62 0.2 25);
+  --border: oklch(0.32 0.018 195);
+  --input: oklch(0.32 0.018 195);
+  --ring: oklch(0.66 0.12 192);
+  --brand: oklch(0.66 0.12 192);
+  --brand-foreground: oklch(0.15 0.01 195);
+  --radius: 0.5rem;
+}
+
+/* Scheme 4: steel — blue industrial */
+[data-scheme='steel'] {
+  color-scheme: light;
+  --background: oklch(0.98 0.006 235);
+  --foreground: oklch(0.23 0.03 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.23 0.03 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.23 0.03 255);
+  --primary: oklch(0.35 0.07 255);
+  --primary-foreground: oklch(0.98 0.006 235);
+  --secondary: oklch(0.94 0.01 235);
+  --secondary-foreground: oklch(0.33 0.07 255);
+  --muted: oklch(0.95 0.008 235);
+  --muted-foreground: oklch(0.5 0.03 255);
+  --accent: oklch(0.55 0.13 245);
+  --accent-foreground: oklch(0.99 0.006 235);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.9 0.012 235);
+  --input: oklch(0.9 0.012 235);
+  --ring: oklch(0.55 0.13 245);
+  --brand: oklch(0.55 0.13 245);
+  --brand-foreground: oklch(0.99 0.006 235);
+  --radius: 0.5rem;
+}
+
+/* Scheme 5: amber — dark industrial with safety-signal accent */
+[data-scheme='amber'] {
+  color-scheme: dark;
+  --background: oklch(0.17 0.004 80);
+  --foreground: oklch(0.95 0.006 85);
+  --card: oklch(0.21 0.005 80);
+  --card-foreground: oklch(0.95 0.006 85);
+  --popover: oklch(0.21 0.005 80);
+  --popover-foreground: oklch(0.95 0.006 85);
+  --primary: oklch(0.12 0.003 80);
+  --primary-foreground: oklch(0.95 0.006 85);
+  --secondary: oklch(0.24 0.006 80);
+  --secondary-foreground: oklch(0.95 0.006 85);
+  --muted: oklch(0.24 0.006 80);
+  --muted-foreground: oklch(0.72 0.012 85);
+  --accent: oklch(0.79 0.16 72);
+  --accent-foreground: oklch(0.17 0.01 80);
+  --destructive: oklch(0.62 0.2 25);
+  --border: oklch(0.3 0.008 80);
+  --input: oklch(0.3 0.008 80);
+  --ring: oklch(0.79 0.16 72);
+  --brand: oklch(0.79 0.16 72);
+  --brand-foreground: oklch(0.17 0.01 80);
+  --radius: 0.5rem;
+}
+
+/* Scheme 6: signal — light industrial: concrete, black, safety amber */
+[data-scheme='signal'] {
+  color-scheme: light;
+  --background: oklch(0.96 0.004 90);
+  --foreground: oklch(0.18 0.005 80);
+  --card: oklch(0.995 0.002 90);
+  --card-foreground: oklch(0.18 0.005 80);
+  --popover: oklch(0.995 0.002 90);
+  --popover-foreground: oklch(0.18 0.005 80);
+  --primary: oklch(0.18 0.005 80);
+  --primary-foreground: oklch(0.97 0.004 90);
+  --secondary: oklch(0.92 0.006 90);
+  --secondary-foreground: oklch(0.18 0.005 80);
+  --muted: oklch(0.92 0.006 90);
+  --muted-foreground: oklch(0.45 0.01 80);
+  --accent: oklch(0.78 0.16 75);
+  --accent-foreground: oklch(0.18 0.005 80);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.86 0.006 90);
+  --input: oklch(0.86 0.006 90);
+  --ring: oklch(0.78 0.16 75);
+  --brand: oklch(0.78 0.16 75);
+  --brand-foreground: oklch(0.18 0.005 80);
+  --radius: 0.5rem;
+}
+
+/* Scheme 7: hmi — operator console: dark slate, status green */
+[data-scheme='hmi'] {
+  color-scheme: dark;
+  --background: oklch(0.2 0.015 245);
+  --foreground: oklch(0.92 0.01 230);
+  --card: oklch(0.245 0.018 245);
+  --card-foreground: oklch(0.92 0.01 230);
+  --popover: oklch(0.245 0.018 245);
+  --popover-foreground: oklch(0.92 0.01 230);
+  --primary: oklch(0.16 0.014 245);
+  --primary-foreground: oklch(0.92 0.01 230);
+  --secondary: oklch(0.27 0.02 245);
+  --secondary-foreground: oklch(0.92 0.01 230);
+  --muted: oklch(0.27 0.02 245);
+  --muted-foreground: oklch(0.7 0.02 230);
+  --accent: oklch(0.77 0.17 155);
+  --accent-foreground: oklch(0.16 0.014 245);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.34 0.02 245);
+  --input: oklch(0.34 0.02 245);
+  --ring: oklch(0.77 0.17 155);
+  --brand: oklch(0.77 0.17 155);
+  --brand-foreground: oklch(0.16 0.014 245);
+  --radius: 0.25rem;
+}
+
+/* Scheme 7b: hmiLight — ISA-101 high-performance HMI: grey, colour only for status */
+[data-scheme='hmiLight'] {
+  color-scheme: light;
+  --background: oklch(0.92 0.004 240);
+  --foreground: oklch(0.25 0.012 245);
+  --card: oklch(0.965 0.003 240);
+  --card-foreground: oklch(0.25 0.012 245);
+  --popover: oklch(0.975 0.003 240);
+  --popover-foreground: oklch(0.25 0.012 245);
+  --primary: oklch(0.3 0.015 245);
+  --primary-foreground: oklch(0.96 0.003 240);
+  --secondary: oklch(0.88 0.006 240);
+  --secondary-foreground: oklch(0.25 0.012 245);
+  --muted: oklch(0.88 0.006 240);
+  --muted-foreground: oklch(0.47 0.015 245);
+  --accent: oklch(0.55 0.13 155);
+  --accent-foreground: oklch(0.98 0.003 240);
+  --destructive: oklch(0.58 0.21 27);
+  --border: oklch(0.8 0.008 240);
+  --input: oklch(0.8 0.008 240);
+  --ring: oklch(0.55 0.13 155);
+  --brand: oklch(0.55 0.13 155);
+  --brand-foreground: oklch(0.98 0.003 240);
+  --radius: 0.25rem;
+}
+
+/* Scheme 8: swiss — white, black, signal red */
+[data-scheme='swiss'] {
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.15 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.15 0 0);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.965 0 0);
+  --secondary-foreground: oklch(0.15 0 0);
+  --muted: oklch(0.965 0 0);
+  --muted-foreground: oklch(0.42 0 0);
+  --accent: oklch(0.58 0.23 27);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.58 0.23 27);
+  --border: oklch(0.15 0 0);
+  --input: oklch(0.8 0 0);
+  --ring: oklch(0.58 0.23 27);
+  --brand: oklch(0.58 0.23 27);
+  --brand-foreground: oklch(1 0 0);
+  --radius: 0;
+}
+
+/* ============================================================
+   LAYOUT MODES (switchable via data-layout on <html>)
+   editorial | technical | minimal
+   ============================================================ */
+[data-layout='editorial'] {
+  --radius: 0.75rem;
+  --section-y: 6rem;
+}
+[data-layout='technical'] {
+  --radius: 0.125rem;
+  --section-y: 4.5rem;
+}
+[data-layout='industrialLight'] {
+  --radius: 0;
+  --section-y: 5.5rem;
+}
+[data-layout='hmi'],
+[data-layout='hmiLight'] {
+  --radius: 0.25rem;
+  --section-y: 4.5rem;
+}
+[data-layout='swiss'] {
+  --radius: 0;
+  --section-y: 6.5rem;
+}
+[data-layout='bento'] {
+  --radius: 1.5rem;
+  --section-y: 5rem;
+}
+[data-layout='pid'] {
+  --radius: 0.375rem;
+  --section-y: 5.5rem;
+}
+[data-layout='corporate'] {
+  --radius: 0.75rem;
+  --section-y: 6rem;
+}
+[data-layout='industrial'] {
+  --radius: 0;
+  --section-y: 5.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+  .section-pad {
+    padding-top: var(--section-y, 5rem);
+    padding-bottom: var(--section-y, 5rem);
+  }
+  /* Micro label used for technical category codes */
+  .label-mono {
+    font-family: var(--font-mono-jb), ui-monospace, monospace;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+  }
+  /* Technical layout: sharper corners + hairline separators */
+  [data-layout='technical'] .surface {
+    border-radius: var(--radius);
+  }
+}
+
+/* ============================================================
+   CONCEPT STYLES — each layout is a separate design concept
+   ============================================================ */
+
+/* --- Чертёж (technical): blueprint grid, hairlines, mono labels --- */
+[data-layout='technical'] body {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--brand) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--brand) 7%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+[data-layout='technical'] h1,
+[data-layout='technical'] h2 {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+[data-layout='technical'] .surface {
+  box-shadow: none;
+  border-style: solid;
+  position: relative;
+}
+[data-layout='technical'] .surface::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--brand);
+  border-left: 2px solid var(--brand);
+}
+[data-layout='technical'] .label-mono::before {
+  content: '// ';
+  opacity: 0.6;
+}
+
+/* --- Индустриальный: heavy uppercase, hard edges, signal stripe --- */
+[data-layout='industrial'] h1,
+[data-layout='industrial'] h2,
+[data-layout='industrialLight'] h1,
+[data-layout='industrialLight'] h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+[data-layout='industrial'] .surface,
+[data-layout='industrialLight'] .surface {
+  border-left: 4px solid var(--brand);
+  border-radius: 0;
+}
+[data-layout='industrial'] .label-mono,
+[data-layout='industrialLight'] .label-mono {
+  display: inline-block;
+  background: var(--brand);
+  color: var(--brand-foreground);
+  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.14em;
+}
+.hazard-stripe {
+  background: repeating-linear-gradient(-45deg, var(--brand) 0 14px, var(--primary) 14px 28px);
+}
+
+/* --- Пульт SCADA: operator console --- */
+[data-layout='hmi'] body,
+[data-layout='hmiLight'] body {
+  font-family: var(--font-plex), var(--font-inter), sans-serif;
+}
+[data-layout='hmi'] h1,
+[data-layout='hmiLight'] h1,
+[data-layout='hmi'] h2,
+[data-layout='hmiLight'] h2,
+[data-layout='hmi'] h3,
+[data-layout='hmiLight'] h3 {
+  font-family: var(--font-plex-mono), monospace;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+[data-layout='hmi'] .surface,
+[data-layout='hmiLight'] .surface {
+  background: linear-gradient(180deg, color-mix(in oklch, var(--card) 100%, white 3%), var(--card));
+  box-shadow: inset 0 1px 0 color-mix(in oklch, white 6%, transparent), 0 0 0 1px var(--border);
+  border-color: transparent;
+  position: relative;
+  padding-top: 2.25rem;
+}
+[data-layout='hmi'] .surface::before,
+[data-layout='hmiLight'] .surface::before {
+  content: '';
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--brand);
+  box-shadow: 0 0 10px var(--brand);
+}
+[data-layout='hmi'] .label-mono::before,
+[data-layout='hmiLight'] .label-mono::before {
+  content: '● ';
+  color: var(--brand);
+}
+.hmi-blink {
+  animation: hmi-blink 1.4s steps(2, start) infinite;
+}
+@keyframes hmi-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* --- Типографика (Swiss): giant type, rules, numbered sections --- */
+[data-layout='swiss'] body {
+  font-family: var(--font-inter), sans-serif;
+}
+[data-layout='swiss'] main {
+  counter-reset: section;
+}
+[data-layout='swiss'] h1 {
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+[data-layout='swiss'] h2 {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+[data-layout='swiss'] .section-heading {
+  counter-increment: section;
+  border-top: 3px solid var(--foreground);
+  padding-top: 1.25rem;
+  max-width: none;
+}
+[data-layout='swiss'] .section-heading::before {
+  content: counter(section, decimal-leading-zero);
+  display: block;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  color: var(--brand);
+  margin-bottom: 1rem;
+}
+[data-layout='swiss'] .surface {
+  border: 0;
+  border-top: 1px solid var(--foreground);
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background: transparent;
+}
+[data-layout='swiss'] .label-mono {
+  font-family: var(--font-inter), sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* --- Плитки (Bento): soft tiles, display font --- */
+[data-layout='bento'] h1,
+[data-layout='bento'] h2 {
+  font-family: var(--font-unbounded), var(--font-inter), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+[data-layout='bento'] h3 {
+  font-family: var(--font-unbounded), var(--font-inter), sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+[data-layout='bento'] .surface {
+  border-color: transparent;
+  background: var(--card);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px rgb(0 0 0 / 0.12);
+}
+[data-layout='bento'] .label-mono {
+  display: inline-block;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--brand) 14%, transparent);
+  padding: 0.3rem 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+/* --- Схема P&ID: drafting paper, instrument bubbles --- */
+[data-layout='pid'] body {
+  background-image: radial-gradient(color-mix(in oklch, var(--foreground) 14%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+[data-layout='pid'] h1,
+[data-layout='pid'] h2 {
+  font-family: var(--font-plex), var(--font-inter), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+[data-layout='pid'] .section-heading .label-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+[data-layout='pid'] .section-heading .label-mono::before {
+  content: '';
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 2px solid var(--brand);
+  border-radius: 999px;
+  background: linear-gradient(var(--brand), var(--brand)) center / 100% 2px no-repeat;
+}
+[data-layout='pid'] .surface {
+  border-width: 1.5px;
+  border-color: color-mix(in oklch, var(--foreground) 55%, transparent);
+  box-shadow: 4px 4px 0 color-mix(in oklch, var(--brand) 25%, transparent);
+}
+
+/* --- Корпоративный: calm, rounded, serious --- */
+[data-layout='corporate'] body {
+  font-family: var(--font-plex), var(--font-inter), sans-serif;
+}
+[data-layout='corporate'] h1,
+[data-layout='corporate'] h2 {
+  font-family: var(--font-plex), var(--font-inter), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+[data-layout='corporate'] .surface {
+  border-color: transparent;
+  box-shadow: 0 0 0 1px var(--border), 0 12px 32px -18px rgb(15 30 60 / 0.25);
+}
+[data-layout='corporate'] .label-mono {
+  font-family: var(--font-plex), sans-serif;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
