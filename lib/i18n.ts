@@ -113,8 +113,8 @@ export type Dict = {
     language: string
     layout: string
     scheme: string
-    layouts: { editorial: string; technical: string; minimal: string }
-    schemes: { petrol: string; slate: string; graphite: string; steel: string }
+    layouts: { editorial: string; technical: string; minimal: string; industrial: string }
+    schemes: { petrol: string; slate: string; graphite: string; steel: string; amber: string }
   }
 }
 
@@ -368,8 +368,8 @@ const ru: Dict = {
     language: "Язык",
     layout: "Макет",
     scheme: "Цветовая схема",
-    layouts: { editorial: "Редакционный", technical: "Технический", minimal: "Минимальный" },
-    schemes: { petrol: "Петроль", slate: "Сланец", graphite: "Графит", steel: "Сталь" },
+    layouts: { editorial: "Редакционный", technical: "Чертёж", minimal: "Минимальный", industrial: "Индустриальный" },
+    schemes: { petrol: "Петроль", slate: "Сланец", graphite: "Графит", steel: "Сталь", amber: "Сигнальный" },
   },
 }
 
@@ -607,8 +607,8 @@ const kz: Dict = {
     language: "Тіл",
     layout: "Макет",
     scheme: "Түс схемасы",
-    layouts: { editorial: "Редакциялық", technical: "Техникалық", minimal: "Минималды" },
-    schemes: { petrol: "Петроль", slate: "Тақтатас", graphite: "Графит", steel: "Болат" },
+    layouts: { editorial: "Редакциялық", technical: "Сызба", minimal: "Минималды", industrial: "Индустриялық" },
+    schemes: { petrol: "Петроль", slate: "Тақтатас", graphite: "Графит", steel: "Болат", amber: "Сигналдық" },
   },
 }
 
@@ -846,8 +846,8 @@ const en: Dict = {
     language: "Language",
     layout: "Layout",
     scheme: "Color scheme",
-    layouts: { editorial: "Editorial", technical: "Technical", minimal: "Minimal" },
-    schemes: { petrol: "Petrol", slate: "Slate", graphite: "Graphite", steel: "Steel" },
+    layouts: { editorial: "Editorial", technical: "Blueprint", minimal: "Minimal", industrial: "Industrial" },
+    schemes: { petrol: "Petrol", slate: "Slate", graphite: "Graphite", steel: "Steel", amber: "Signal" },
   },
 }
 

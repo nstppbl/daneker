@@ -1,10 +1,10 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { useSettings } from "@/lib/settings-context"
 import { Container, SectionHeading } from "@/components/ui/section"
 import { ContactCta } from "@/components/contact-cta"
+import { HomeHero } from "@/components/home-hero"
 import { DiffSection, CertsSection, SurveySection } from "@/components/content-sections"
 
 export default function HomePage() {
@@ -13,36 +13,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0">
-          <Image src="/hero-industrial.png" alt="" fill priority className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/92 to-background/55" />
-        </div>
-        <Container className="relative">
-          <div className="max-w-2xl py-20 sm:py-28 lg:py-36">
-            <p className="label-mono text-brand">{h.eyebrow}</p>
-            <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              {h.heroTitle}
-            </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">{h.heroSubtitle}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link
-                href="/contacts"
-                className="inline-flex items-center rounded-md bg-brand px-6 py-3 text-sm font-semibold text-brand-foreground transition-opacity hover:opacity-90"
-              >
-                {t.common.leaveRequest}
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center rounded-md border border-border bg-background/60 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-colors hover:bg-secondary"
-              >
-                {t.common.whatWeDo}
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <HomeHero />
 
       {/* STATS */}
       <section className="border-b border-border bg-card">

@@ -8,14 +8,15 @@ const SCHEME_SWATCHES: Record<Scheme, { bg: string; brand: string; ring: string 
   slate: { bg: "#f4f5f7", brand: "#2b8fb0", ring: "#2f3a45" },
   graphite: { bg: "#1c2624", brand: "#2fb8b8", ring: "#0f1513" },
   steel: { bg: "#f6f8fb", brand: "#2f6bd6", ring: "#243a63" },
+  amber: { bg: "#1a1a1a", brand: "#f5a623", ring: "#0d0d0d" },
 }
 
 export function SettingsPanel() {
   const { t, scheme, layout, setScheme, setLayout } = useSettings()
   const [open, setOpen] = useState(false)
 
-  const schemes: Scheme[] = ["petrol", "slate", "graphite", "steel"]
-  const layouts: Layout[] = ["editorial", "technical", "minimal"]
+  const schemes: Scheme[] = ["petrol", "slate", "graphite", "steel", "amber"]
+  const layouts: Layout[] = ["editorial", "technical", "minimal", "industrial"]
 
   return (
     <>
@@ -41,7 +42,7 @@ export function SettingsPanel() {
             {/* Layout */}
             <div className="mb-5">
               <p className="mb-2 text-sm font-medium text-foreground">{t.settings.layout}</p>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 gap-2">
                 {layouts.map((l) => (
                   <button
                     key={l}

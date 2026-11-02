@@ -13,7 +13,7 @@ const archivo = Archivo({
   variable: "--font-archivo",
   display: "swap",
 })
-const jbMono = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono-jb", display: "swap" })
+const jbMono = JetBrains_Mono({ subsets: ["latin", "cyrillic"], weight: ["400", "500"], variable: "--font-mono-jb", display: "swap" })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.daneker.kz"),

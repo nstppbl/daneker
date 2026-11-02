@@ -146,6 +146,32 @@
   --radius: 0.5rem;
 }
 
+/* Scheme 5: amber — dark industrial with safety-signal accent */
+[data-scheme='amber'] {
+  color-scheme: dark;
+  --background: oklch(0.17 0.004 80);
+  --foreground: oklch(0.95 0.006 85);
+  --card: oklch(0.21 0.005 80);
+  --card-foreground: oklch(0.95 0.006 85);
+  --popover: oklch(0.21 0.005 80);
+  --popover-foreground: oklch(0.95 0.006 85);
+  --primary: oklch(0.12 0.003 80);
+  --primary-foreground: oklch(0.95 0.006 85);
+  --secondary: oklch(0.24 0.006 80);
+  --secondary-foreground: oklch(0.95 0.006 85);
+  --muted: oklch(0.24 0.006 80);
+  --muted-foreground: oklch(0.72 0.012 85);
+  --accent: oklch(0.79 0.16 72);
+  --accent-foreground: oklch(0.17 0.01 80);
+  --destructive: oklch(0.62 0.2 25);
+  --border: oklch(0.3 0.008 80);
+  --input: oklch(0.3 0.008 80);
+  --ring: oklch(0.79 0.16 72);
+  --brand: oklch(0.79 0.16 72);
+  --brand-foreground: oklch(0.17 0.01 80);
+  --radius: 0.5rem;
+}
+
 /* ============================================================
    LAYOUT MODES (switchable via data-layout on <html>)
    editorial | technical | minimal
@@ -161,6 +187,10 @@
 [data-layout='minimal'] {
   --radius: 0.5rem;
   --section-y: 7rem;
+}
+[data-layout='industrial'] {
+  --radius: 0;
+  --section-y: 5.5rem;
 }
 
 @layer base {
@@ -187,7 +217,7 @@
   }
   /* Micro label used for technical category codes */
   .label-mono {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono-jb), ui-monospace, monospace;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     font-size: 0.7rem;
@@ -196,4 +226,89 @@
   [data-layout='technical'] .surface {
     border-radius: var(--radius);
   }
+}
+
+/* ============================================================
+   CONCEPT STYLES — each layout is a separate design concept
+   ============================================================ */
+
+/* --- Чертёж (technical): blueprint grid, hairlines, mono labels --- */
+[data-layout='technical'] body {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--brand) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--brand) 7%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+[data-layout='technical'] h1,
+[data-layout='technical'] h2 {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+[data-layout='technical'] .surface {
+  box-shadow: none;
+  border-style: solid;
+  position: relative;
+}
+[data-layout='technical'] .surface::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--brand);
+  border-left: 2px solid var(--brand);
+}
+[data-layout='technical'] .label-mono::before {
+  content: '// ';
+  opacity: 0.6;
+}
+
+/* --- Минимальный: no frames, airy, large type --- */
+[data-layout='minimal'] .surface {
+  border-color: transparent;
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+}
+[data-layout='minimal'] h2 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+[data-layout='minimal'] h1 {
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+[data-layout='minimal'] .label-mono {
+  letter-spacing: 0.08em;
+  text-transform: none;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* --- Индустриальный: heavy uppercase, hard edges, signal stripe --- */
+[data-layout='industrial'] h1,
+[data-layout='industrial'] h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+[data-layout='industrial'] .surface {
+  border-left: 4px solid var(--brand);
+  border-radius: 0;
+}
+[data-layout='industrial'] .label-mono {
+  display: inline-block;
+  background: var(--brand);
+  color: var(--brand-foreground);
+  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.14em;
+}
+.hazard-stripe {
+  background: repeating-linear-gradient(-45deg, var(--brand) 0 14px, var(--primary) 14px 28px);
 }

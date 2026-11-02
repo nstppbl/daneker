@@ -4,8 +4,8 @@ import { createContext, useContext, useEffect, useState, useCallback } from "rea
 import { type Lang, dictionaries, type Dict } from "@/lib/i18n"
 import { extraDictionaries, type ExtraDict } from "@/lib/i18n-extra"
 
-export type Scheme = "petrol" | "slate" | "graphite" | "steel"
-export type Layout = "editorial" | "technical" | "minimal"
+export type Scheme = "petrol" | "slate" | "graphite" | "steel" | "amber"
+export type Layout = "editorial" | "technical" | "minimal" | "industrial"
 
 type SettingsState = {
   lang: Lang
@@ -52,7 +52,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     el.setAttribute("data-scheme", scheme)
     el.setAttribute("data-layout", layout)
     el.setAttribute("lang", lang)
-    el.classList.toggle("dark", scheme === "graphite")
+    el.classList.toggle("dark", scheme === "graphite" || scheme === "amber")
     try {
       localStorage.setItem(LS_KEY, JSON.stringify({ lang, scheme, layout }))
     } catch {

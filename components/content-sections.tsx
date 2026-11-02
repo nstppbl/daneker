@@ -146,6 +146,7 @@ export function CertsSection({ compact = false }: { compact?: boolean }) {
               <span className="text-sm font-medium leading-relaxed text-foreground">{it.course}</span>
             </li>
           ))}
+          {c.items.length % 6 !== 0 && <li aria-hidden="true" className="hidden bg-card sm:block" />}
         </ul>
       </Container>
     </section>

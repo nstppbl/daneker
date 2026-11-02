@@ -18,7 +18,7 @@ export function BrandLogo({
   priority?: boolean
 }) {
   const { scheme } = useSettings()
-  const dark = scheme === "graphite"
+  const dark = scheme === "graphite" || scheme === "amber"
 
   const src =
     variant === "icon"
